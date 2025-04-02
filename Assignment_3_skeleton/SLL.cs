@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assignment_3_skeleton
+namespace Assignment_3_LinkedLists
 {
     public class SLL : LinkedListADT
     {

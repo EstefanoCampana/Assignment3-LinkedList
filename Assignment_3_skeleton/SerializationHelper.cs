@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-namespace Assignment_3_skeleton
+namespace Assignment_3_LinkedLists
 {
     public static class SerializationHelper
     {
