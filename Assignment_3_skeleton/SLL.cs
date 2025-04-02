@@ -52,34 +52,50 @@ namespace Assignment_3_LinkedLists
 
         public void Delete(int targetIndex)
         {
-            if (CheckListNull() is true)
+            try
             {
-                return;
-            }
-            int index = 0;
-            for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
-            {
-                if (targetIndex == 0)
+                int index = 0;
+                if (CheckListNull() is true)
                 {
-                    head = head.Next;
-                    return;
+                    throw new EmptyListException();
                 }
+                if (targetIndex < 0 || targetIndex > ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
+                {
+                    if (targetIndex == 0)
+                    {
+                        head = head.Next;
+                        return;
+                    }
 
-                if (index + 1 == targetIndex)
-                {
-                    if (tempNode.Next == tail)
+                    if (index + 1 == targetIndex)
                     {
-                        tail = tempNode;
-                        tail.Next = null;
-                        return;
+                        if (tempNode.Next == tail)
+                        {
+                            tail = tempNode;
+                            tail.Next = null;
+                            return;
+                        }
+                        else
+                        {
+                            tempNode.Next = tempNode.Next.Next;
+                            return;
+                        }
                     }
-                    else
-                    {
-                        tempNode.Next = tempNode.Next.Next;
-                        return;
-                    }
+                    index++;
                 }
-                index++;
+            }
+
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -104,42 +120,53 @@ namespace Assignment_3_LinkedLists
 
         public void Insert(object data, int targetIndex)
         {
-            listSize++;
-            if (targetIndex == 0)
+            try
             {
-                if (CheckListNull() is true)
+                listSize++;
+                if (CheckListNull() is true && targetIndex > 0)
                 {
-                    head = tail = new Node(data);
+                    throw new ListIndexOutOfRangeException();
                 }
-                else
-                { // no work
-                    Node temp = head;
-                    head = new Node(data, temp);
-                }
-            }
-            if (CheckListNull() is true && targetIndex > 0)
-            {
-                Console.WriteLine("Target Index Out of Bounds For Linked List");
-            }
-            int index = 0;
-            for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
-            {
-                if (index + 1 == targetIndex)
+                if (targetIndex > ListSize)
                 {
-                    if (tempNode.Next == tail)
+                    throw new ListIndexOutOfRangeException();
+                }
+                if (targetIndex == 0)
+                {
+                    if (CheckListNull() is true)
                     {
-                        Console.WriteLine("Here");
-                        Append(tail.Data);
-                        tempNode.Next = new Node(data, tail);
+                        head = tail = new Node(data);
                     }
                     else
-                    { // in between
-                        Console.WriteLine("IN ELSE");
-                        Node temp = tempNode.Next;
-                        tempNode.Next = new Node(data, temp);
+                    { // no work
+                        Node temp = head;
+                        head = new Node(data, temp);
                     }
                 }
-                index++;
+                int index = 0;
+                for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
+                {
+                    if (index + 1 == targetIndex)
+                    {
+                        if (tempNode.Next == tail)
+                        {
+                            Console.WriteLine("Here");
+                            Append(tail.Data);
+                            tempNode.Next = new Node(data, tail);
+                        }
+                        else
+                        { // in between
+                            Console.WriteLine("IN ELSE");
+                            Node temp = tempNode.Next;
+                            tempNode.Next = new Node(data, temp);
+                        }
+                    }
+                    index++;
+                }
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -169,64 +196,96 @@ namespace Assignment_3_LinkedLists
 
         public void Replace(object data, int targetIndex)
         {
-            if (CheckListNull() is true)
+            try
             {
-                return;
-            }
-            int index = 0;
-            for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
-            {
-                if (targetIndex == 0)
+                int index = 0;
+                if (CheckListNull() is true)
                 {
-                    head = new Node(data, head.Next);
-                    return;
+                    throw new EmptyListException();
                 }
+                if (targetIndex < ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
+                {
+                    if (targetIndex == 0)
+                    {
+                        head = new Node(data, head.Next);
+                        return;
+                    }
 
-                if (index + 1 == targetIndex)
-                {
-                    if (tempNode == tail)
+                    if (index + 1 == targetIndex)
                     {
-                        tail = new Node(data);
-                        return;
+                        if (tempNode == tail)
+                        {
+                            tail = new Node(data);
+                            return;
+                        }
+                        else
+                        {
+                            tempNode.Next = new Node(data, tempNode.Next.Next);
+                            //tail = tempNode.Next;
+                            return;
+                        }
                     }
-                    else
-                    {
-                        tempNode.Next = new Node(data, tempNode.Next.Next);
-                        tail = tempNode.Next;
-                        return;
-                    }
+                    index++;
                 }
-                index++;
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
         public object Retrieve(int targetIndex)
         {
-            if (CheckListNull() is true)
+            try
             {
+                if (CheckListNull() is true)
+                {
+                    throw new EmptyListException();
+                }
+                if (targetIndex == 0)
+                {
+                    return head.Data;
+                }
+                if (targetIndex < 0 || targetIndex > ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                int index = 0;
+                for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
+                {
+                    if (index + 1 == targetIndex)
+                    {
+                        if (tempNode.Next == tail)
+                        {
+                            return tail.Data;
+                        }
+                        else
+                        {
+                            return tempNode.Next.Data;
+                        }
+                    }
+                    index++;
+                }
+                return -1;
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
                 return null;
             }
-            if(targetIndex == 0)
+            catch (ListIndexOutOfRangeException ex)
             {
-                return head.Data;
+                Console.WriteLine(ex.Message);
+                return null;
             }
-            int index = 0;
-            for(Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
-            {
-                if(index+1 == targetIndex)
-                {
-                    if (tempNode.Next == tail)
-                    {
-                        return tail.Data;
-                    }
-                    else
-                    {
-                        return tempNode.Next.Data;
-                    }
-                }
-                index++;
-            }
-            return -1;
         }
 
         public int Size()
