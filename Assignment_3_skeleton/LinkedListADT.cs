@@ -143,9 +143,9 @@ namespace Assignment_3_LinkedLists
         /// <summary>
         /// Used to join two or more lists.
         /// </summary>
-        /// <param name="SLList">A list containing all of the linked lists to append.</param>
+        /// <param name="appendList">The list to append </param>
         /// <exception cref="EmptyListException">Thrown if trying to append to an empty/non-existent list.</exception>
-        void JoinList(List<SLL> SLList);
+        void JoinList(SLL appendList);
 
     }
 }

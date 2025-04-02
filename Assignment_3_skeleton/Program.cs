@@ -11,7 +11,7 @@ namespace Assignment_3_LinkedLists
     {
         public static SLL list = new SLL();
         public static SLL list2 = new SLL();
-        public static List<SLL> SLLs = new List<SLL>();
+        public static SLL list3 = new SLL();
 
         static void Main(string[] args)
         {
@@ -42,8 +42,20 @@ namespace Assignment_3_LinkedLists
             list2.Append('c');
             list2.PrintData();
 
-            SLLs.Append(list2);
-            list.JoinList(SLLs);
+            Console.WriteLine("Function [Append] 'a'");
+            list3.Append('a');
+            list3.PrintList();
+
+            Console.WriteLine("Function [Append] 'b'");
+            list3.Append('b');
+            list3.PrintList();
+
+            Console.WriteLine("Function [Append] 'c'");
+            list3.Append('c');
+            list3.PrintData();
+
+            list.JoinList(list2);
+            list.JoinList(list3);
             list.PrintList();
 
             //Console.WriteLine("Function [Retrieve] '0' ");
