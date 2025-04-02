@@ -359,7 +359,7 @@ namespace Assignment_3_LinkedLists
             return false;
         }
 
-        public void JoinList(List<SLL> SLList)
+        public void JoinList(SLL appendList)
         {
             try
             {
@@ -369,18 +369,11 @@ namespace Assignment_3_LinkedLists
                 }
                 else
                 {
-                    if (SLList == null)
+                    Node current = appendList.Head;
+                    while(current != null)
                     {
-                        throw new EmptyListException();
-                    }
-                    else
-                    {
-                        int counter = 0;
-                        Node node = Head;
-                        foreach (SLL linkedList in SLList)
-                        {
-                            this.Append(linkedList);
-                        }
+                        this.Append(current.Data);
+                        current = current.Next;
                     }
                 }
             }
