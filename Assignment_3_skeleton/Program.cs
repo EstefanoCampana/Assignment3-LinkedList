@@ -22,41 +22,41 @@ namespace Assignment_3_LinkedLists
 
 
             Console.WriteLine("Function [Append] 'a'");
-            list.Append('a');
+            list.AddEnd('a');
             list.PrintList();
 
             Console.WriteLine("Function [Append] 'b'");
-            list.Append('b');
+            list.AddEnd('b');
             list.PrintList();
 
             Console.WriteLine("Function [Append] 'c'");
-            list.Append('c');
+            list.AddEnd('c');
             list.PrintData();
 
             list2.JoinList(list);
 
             Console.WriteLine("Function [Append] 'a'");
-            list2.Append('d');
+            list2.AddEnd('d');
             list2.PrintList();
 
             Console.WriteLine("Function [Append] 'b'");
-            list2.Append('e');
+            list2.AddEnd('e');
             list2.PrintList();
 
             Console.WriteLine("Function [Append] 'c'");
-            list2.Append('f');
+            list2.AddEnd('f');
             list2.PrintData();
 
             Console.WriteLine("Function [Append] 'a'");
-            list3.Append('g');
+            list3.AddEnd('g');
             list3.PrintList();
 
             Console.WriteLine("Function [Append] 'b'");
-            list3.Append('h');
+            list3.AddEnd('h');
             list3.PrintList();
 
             Console.WriteLine("Function [Append] 'c'");
-            list3.Append('i');
+            list3.AddEnd('i');
             list3.PrintData();
 
             list.JoinList(list2);

@@ -36,10 +36,10 @@ namespace Test_Assignment_3
         [Test]
         public void TestAppendNode()
         {
-            this.linkedList.Append("a");
-            this.linkedList.Append("b");
-            this.linkedList.Append("c");
-            this.linkedList.Append("d");
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
 
             /**
              * Linked list should now be:
@@ -70,10 +70,10 @@ namespace Test_Assignment_3
         [Test]
         public void testPrependNodes()
         {
-            this.linkedList.Prepend("a");
-            this.linkedList.Prepend("b");
-            this.linkedList.Prepend("c");
-            this.linkedList.Prepend("d");
+            this.linkedList.AddBeginning("a");
+            this.linkedList.AddBeginning("b");
+            this.linkedList.AddBeginning("c");
+            this.linkedList.AddBeginning("d");
 
             /**
              * Linked list should now be:
@@ -104,12 +104,12 @@ namespace Test_Assignment_3
         [Test]
         public void TestInsertNode()
         {
-            this.linkedList.Append("a");
-            this.linkedList.Append("b");
-            this.linkedList.Append("c");
-            this.linkedList.Append("d");
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
 
-            this.linkedList.Insert("e", 2);
+            this.linkedList.InsertAt(2,"e");
 
             /**
              * Linked list should now be:
@@ -143,10 +143,10 @@ namespace Test_Assignment_3
         [Test]
         public void TestReplaceNode()
         {
-            this.linkedList.Append("a");
-            this.linkedList.Append("b");
-            this.linkedList.Append("c");
-            this.linkedList.Append("d");
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
 
             this.linkedList.Replace("e", 2);
 
@@ -179,10 +179,10 @@ namespace Test_Assignment_3
         [Test]
         public void TestDeleteNode()
         {
-            this.linkedList.Append("a");
-            this.linkedList.Append("b");
-            this.linkedList.Append("c");
-            this.linkedList.Append("d");
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
 
             this.linkedList.Delete(2);
 
@@ -212,10 +212,10 @@ namespace Test_Assignment_3
         [Test]
         public void TestFindNode()
         {
-            this.linkedList.Append("a");
-            this.linkedList.Append("b");
-            this.linkedList.Append("c");
-            this.linkedList.Append("d");
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
 
             /**
              * Linked list should now be:
@@ -238,10 +238,10 @@ namespace Test_Assignment_3
         [Test]
         public void TestGetIndex()
         {
-            this.linkedList.Append("a");
-            this.linkedList.Append("b");
-            this.linkedList.Append("c");
-            this.linkedList.Append("d");
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
 
             // Check to see if list is empty
             Assert.False(this.linkedList.IsEmpty());
@@ -253,10 +253,10 @@ namespace Test_Assignment_3
         [Test]
         public void TestListHasItem()
         {
-            this.linkedList.Append("a");
-            this.linkedList.Append("b");
-            this.linkedList.Append("c");
-            this.linkedList.Append("d");
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
 
             // Tests if linked list is not empty
             Assert.False(this.linkedList.IsEmpty());
