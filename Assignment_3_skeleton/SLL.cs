@@ -18,6 +18,182 @@ namespace Assignment_3_LinkedLists
         public Node Tail { get => tail; set => tail = value; }
         public int ListSize { get => listSize; set => listSize = value; }
 
+        public void AddBeginning(object data)
+        {
+            Node newNode = new Node(data);
+            if (Head == null)
+            {
+                Tail = newNode;
+            }
+            else
+            {
+                newNode.Next = Head;
+            }
+            Head = newNode;
+            ListSize++;
+        }
+
+        public void AddEnd(object data)
+        {
+            Node newNode = new Node(data);
+            if (Head == null)
+            {
+                Head = newNode;
+            }
+            else
+            {
+                Tail.Next = newNode;
+            }
+            Tail = newNode;
+            ListSize++;
+        }
+
+        public void RemoveAt(int index)
+        {
+            try
+            {
+                Node current = Head;
+                if (index < 0 || index > (ListSize - 1))
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                else if (ListSize == 0)
+                {
+                    throw new EmptyListException();
+                }
+                else
+                {
+                    if (index == 0)
+                    {
+                        RemoveStart();
+                    }
+                    else if (index == (ListSize - 1))
+                    {
+                        RemoveEnd();
+                    }
+                    else
+                    {
+                        for (int i = 0; i <= index; i++)
+                        {
+                            if (i == (index - 1))
+                            {
+                                current.Next = current.Next.Next;
+                            }
+                            current = current.Next;
+                        }
+                        ListSize--;
+                    }
+                }
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void RemoveStart()
+        {
+            try
+            {
+                if (Head != null)
+                {
+                    Head = Head.Next;
+                    if (Head == null)
+                    {
+                        Tail = null;
+                    }
+                    ListSize--;
+                }
+                else
+                {
+                    throw new EmptyListException();
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void RemoveEnd()
+        {
+            try
+            {
+                if (Head != null)
+                {
+                    if (Head.Next == null)
+                    {
+                        Head = null;
+                        Tail = null;
+                    }
+                    else
+                    {
+                        Node current = Head;
+                        while (current.Next.Next != null)
+                        {
+                            current = current.Next;
+                        }
+                        current.Next = null;
+                        Tail = current;
+                    }
+                    ListSize--;
+                }
+                else
+                {
+                    throw new EmptyListException();
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void InsertAt(int index, object data)
+        {
+            try
+            {
+                Node newNode = new Node(data);
+                Node current = Head;
+                if (index < 0 || index > ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                else
+                {
+                    if (index == 0)
+                    {
+                        AddBeginning(data);
+                    }
+                    else if ((index == ListSize - 1) && (ListSize != 2))
+                    {
+                        AddEnd(data);
+                    }
+                    else
+                    {
+                        for (int i = 0; i <= index; i++)
+                        {
+                            if (i == index - 1)
+                            {
+                                newNode.Next = current.Next;
+                                current.Next = newNode;
+                            }
+                            current = current.Next;
+                        }
+                    }
+                    ListSize++;
+                }
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public void Append(object data)
         {
             listSize++;
@@ -372,7 +548,7 @@ namespace Assignment_3_LinkedLists
                     Node current = appendList.Head;
                     while(current != null)
                     {
-                        this.Append(current.Data);
+                        this.AddEnd(current.Data);
                         current = current.Next;
                     }
                 }
@@ -380,6 +556,59 @@ namespace Assignment_3_LinkedLists
             catch (EmptyListException ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        /// <summary>
+        /// Used to divide a list in two at a specified index.
+        /// </summary>
+        /// <param name="index">Index to separate the list in two.</param>
+        /// <exception cref="EmptyListException">Thrown if trying split an empty list.</exception>
+        /// <exception cref="ListIndexOutOfRangeException">Thrown if the index specified is larger than the list size.</exception>
+        public SLL Divide(int index)
+        {
+            try
+            {
+                if (index > ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                if (Head == null && Tail == null)
+                {
+                    throw new EmptyListException();
+                }
+                else
+                {
+                    Node current = Head;
+                    int count = 0;
+                    SLL newList = new SLL();
+                    while (current != null)
+                    {
+                        if (count == index)
+                        {
+                            //newList.Append(current.Data);
+                            while (current != null)
+                            {
+                                this.RemoveAt(count);
+                                newList.Append(current.Data);
+                                current = current.Next;
+                            }
+                            break;
+                        }
+                        count++;
+                        current = current.Next;
+                    }
+                    return newList;
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
             }
         }
 
