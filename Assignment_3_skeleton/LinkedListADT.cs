@@ -9,34 +9,34 @@ namespace Assignment_3_LinkedLists
     public interface LinkedListADT
     {
         /// <summary>
-        /// Prepend an item to the beginning of the linked list
+        /// Prepend an item to the beginning of the linked list.
         /// </summary>
-        void AddBeginning(Object data);
+        //void AddBeginning(Object data);
 
         /// <summary>
-        /// Append an item to the end of the linked list
+        /// Append an item to the end of the linked list.
         /// </summary>
-        void AddEnd(Object data);
+        //void AddEnd(Object data);
 
         /// <summary>
-        /// Remove an item at an index in the linked list
+        /// Remove an item at an index in the linked list.
         /// </summary>
-        void RemoveAt(int index);
+        //void RemoveAt(int index);
 
         /// <summary>
-        /// Remove an item from the start of the linked list
+        /// Remove an item from the start of the linked list.
         /// </summary>
-        void RemoveStart();
+       // void RemoveStart();
 
         /// <summary>
-        /// Remove an item from the end of the linked list
+        /// Remove an item from the end of the linked list.
         /// </summary>
-        void RemoveEnd();
+       // void RemoveEnd();
 
         /// <summary>
-        /// Insert an item at a specific index in the linked list
+        /// Insert an item at a specific index in the linked list.
         /// </summary>
-        void InsertAt(int index, Object data);
+       // void InsertAt(int index, Object data);
 
 
         /// <summary>
@@ -108,10 +108,44 @@ namespace Assignment_3_LinkedLists
         int IndexOf(Object data);
 
         /// <summary>
-        /// Go through elements and check if we have one with data.
+        /// Goes through elements and check if we have one with data.
         /// </summary>
         /// <param name="data">Data object to search for.</param>
         /// <returns>True if element exists with value.</returns>
         bool Contains(Object data);
+        /// <summary>
+        /// Prints all of the items inside the linked list.
+        /// </summary>
+        void PrintList();
+        /// <summary>
+        /// Gets the node and its data in the head of the linked list.
+        /// </summary>
+        Node GetHead();
+        /// <summary>
+        /// Gets the node and its data in the tail of the linked list.
+        /// </summary>
+        Node GetTail();
+        /// <summary>
+        /// Combination of printing the list, and getting the values in the head and tail of the linked list.
+        /// </summary>
+        void PrintData();
+        /// <summary>
+        /// Checks if the list is empty.
+        /// </summary>
+        /// <returns>False if it is not null and True if it is empty.</returns>
+        bool CheckListNull();
+        /// <summary>
+        /// Used when a list is empty to restore its head node.
+        /// </summary>
+        /// <param name="data">Data for the head.</param>
+        /// <returns>False if neither of the head and tail is null and True when a new head node has been created. </returns>
+        bool FixListNull(object data);
+        /// <summary>
+        /// Used to join two or more lists.
+        /// </summary>
+        /// <param name="SLList">A list containing all of the linked lists to append.</param>
+        /// <exception cref="EmptyListException">Thrown if trying to append to an empty/non-existent list.</exception>
+        void JoinList(List<SLL> SLList);
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,7 +48,6 @@ namespace Assignment_3_LinkedLists
                 current = current.Next;
             }
             return false; //data not found
-            //throw new NotImplementedException();
         }
 
         public void Delete(int targetIndex)
@@ -190,8 +190,6 @@ namespace Assignment_3_LinkedLists
             Node new_node = new Node(data);
             new_node.Next = head;
             head = new_node;
-
-            //throw new IndexOutOfRangeException();
         }
 
         public void Replace(object data, int targetIndex)
@@ -299,9 +297,6 @@ namespace Assignment_3_LinkedLists
         }
 
         // EXTRA METHODS
-
-
-        // print DATA of all Nodes in the Linked List
         public void PrintList()
         {
             if (CheckListNull() is true)
@@ -315,7 +310,6 @@ namespace Assignment_3_LinkedLists
             Console.WriteLine();
         }
 
-        // Return the head as NODE if list not empty
         public Node GetHead()
         {
             if (CheckListNull() is true)
@@ -325,7 +319,6 @@ namespace Assignment_3_LinkedLists
             return head;
         }
 
-        // return the tail as NODE if list not empty
         public Node GetTail()
         {
             if (CheckListNull() is true)
@@ -335,7 +328,6 @@ namespace Assignment_3_LinkedLists
             return tail;
         }
 
-        // return DATA of all Nodes, print Data of head and tail as well... helps to verify all values
         public void PrintData()
         {
             if (CheckListNull() is true)
@@ -347,7 +339,6 @@ namespace Assignment_3_LinkedLists
             Console.WriteLine("TAIL: " + GetTail().Data + "\n\n");
         }
 
-        // return "List was Null" if list is empty.
         public bool CheckListNull()
         {
             if (head is null && tail is null)
@@ -358,18 +349,46 @@ namespace Assignment_3_LinkedLists
             return false;
         }
 
-        // When using a method that ads a Node to the list, if the list is empty run  this method
-        // this is useful as there are many methods that add Nodes to the list... this can therefore be used universally
         public bool FixListNull(object data)
         {
-            if (head is null && tail is null)
+            if (Head is null && Tail is null)
             {
-                head = tail = new Node(data);
+                Head = Tail = new Node(data);
                 return true;
             }
             return false;
         }
 
+        public void JoinList(List<SLL> SLList)
+        {
+            try
+            {
+                if (Head == null && Tail == null)
+                {
+                    throw new EmptyListException();
+                }
+                else
+                {
+                    if (SLList == null)
+                    {
+                        throw new EmptyListException();
+                    }
+                    else
+                    {
+                        int counter = 0;
+                        Node node = Head;
+                        foreach (SLL linkedList in SLList)
+                        {
+                            this.Append(linkedList);
+                        }
+                    }
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
     }
 }
