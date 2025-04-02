@@ -18,6 +18,178 @@ namespace Assignment_3_LinkedLists
         public Node Tail { get => tail; set => tail = value; }
         public int ListSize { get => listSize; set => listSize = value; }
 
+        public void AddBeginning(object data)
+        {
+            Node newNode = new Node(data);
+            if (Head == null)
+            {
+                Tail = newNode;
+            }
+            else
+            {
+                newNode.Next = Head;
+            }
+            Head = newNode;
+            ListSize++;
+        }
+
+        public void AddEnd(object data)
+        {
+            Node newNode = new Node(data);
+            if (Head == null)
+            {
+                Head = newNode;
+            }
+            else
+            {
+                Tail!.Next = newNode;
+            }
+            Tail = newNode;
+            ListSize++;
+        }
+
+        public void RemoveAt(int index)
+        {
+            try
+            {
+                Node current = Head;
+                if (index < 0 || index > (ListSize - 1))
+                {
+                    throw new EmptyListException(index);
+                }
+                else
+                {
+                    if (index == 0)
+                    {
+                        RemoveStart();
+                    }
+                    else if (index == (ListSize - 1))
+                    {
+                        RemoveEnd();
+                    }
+                    else
+                    {
+                        for (int i = 0; i <= index; i++)
+                        {
+                            if (i == (index - 1))
+                            {
+                                current.Next = current.Next.Next;
+                            }
+                            current = current.Next;
+                        }
+                        ListSize--;
+                    }
+                }
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void RemoveStart()
+        {
+            try
+            {
+                if (Head != null)
+                {
+                    Head = Head.Next;
+                    if (Head == null)
+                    {
+                        Tail = null;
+                    }
+                    ListSize--;
+                }
+                else
+                {
+                    throw new EmptyListException();
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void RemoveEnd()
+        {
+            try
+            {
+                if (Head != null)
+                {
+                    if (Head.Next == null)
+                    {
+                        Head = null;
+                        Tail = null;
+                    }
+                    else
+                    {
+                        Node current = Head;
+                        while (current.Next!.Next != null)
+                        {
+                            current = current.Next;
+                        }
+                        current.Next = null;
+                        Tail = current;
+                    }
+                    ListSize--;
+                }
+                else
+                {
+                    throw new EmptyListException();
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void InsertAt(int index, object data)
+        {
+            try
+            {
+                Node newNode = new Node(data);
+                Node current = Head;
+                if (index < 0 || index > ListSize)
+                {
+                    throw new EmptyListException(index);
+                }
+                else
+                {
+                    if (index == 0)
+                    {
+                        AddBeginning(data);
+                    }
+                    else if (index == ListSize - 1)
+                    {
+                        AddEnd(data);
+                    }
+                    else
+                    {
+                        for (int i = 0; i <= index; i++)
+                        {
+                            if (i == index - 1)
+                            {
+                                newNode.Next = current.Next;
+                                current.Next = newNode;
+                            }
+                            current = current.Next;
+                        }
+                    }
+                    ListSize++;
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public void Append(object data)
         {
             listSize++;
