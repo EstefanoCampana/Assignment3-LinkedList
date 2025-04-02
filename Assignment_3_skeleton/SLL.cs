@@ -548,7 +548,7 @@ namespace Assignment_3_LinkedLists
                     Node current = appendList.Head;
                     while(current != null)
                     {
-                        this.Append(current.Data);
+                        this.AddEnd(current.Data);
                         current = current.Next;
                     }
                 }
@@ -556,6 +556,59 @@ namespace Assignment_3_LinkedLists
             catch (EmptyListException ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        /// <summary>
+        /// Used to divide a list in two at a specified index.
+        /// </summary>
+        /// <param name="index">Index to separate the list in two.</param>
+        /// <exception cref="EmptyListException">Thrown if trying split an empty list.</exception>
+        /// <exception cref="ListIndexOutOfRangeException">Thrown if the index specified is larger than the list size.</exception>
+        public SLL Divide(int index)
+        {
+            try
+            {
+                if (index > ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                if (Head == null && Tail == null)
+                {
+                    throw new EmptyListException();
+                }
+                else
+                {
+                    Node current = Head;
+                    int count = 0;
+                    SLL newList = new SLL();
+                    while (current != null)
+                    {
+                        if (count == index)
+                        {
+                            //newList.Append(current.Data);
+                            while (current != null)
+                            {
+                                this.RemoveAt(count);
+                                newList.Append(current.Data);
+                                current = current.Next;
+                            }
+                            break;
+                        }
+                        count++;
+                        current = current.Next;
+                    }
+                    return newList;
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
             }
         }
 
