@@ -42,7 +42,7 @@ namespace Assignment_3_LinkedLists
             }
             else
             {
-                Tail!.Next = newNode;
+                Tail.Next = newNode;
             }
             Tail = newNode;
             ListSize++;
@@ -55,7 +55,11 @@ namespace Assignment_3_LinkedLists
                 Node current = Head;
                 if (index < 0 || index > (ListSize - 1))
                 {
-                    throw new EmptyListException(index);
+                    throw new ListIndexOutOfRangeException();
+                }
+                else if (ListSize == 0)
+                {
+                    throw new EmptyListException();
                 }
                 else
                 {
@@ -129,7 +133,7 @@ namespace Assignment_3_LinkedLists
                     else
                     {
                         Node current = Head;
-                        while (current.Next!.Next != null)
+                        while (current.Next.Next != null)
                         {
                             current = current.Next;
                         }
@@ -157,7 +161,7 @@ namespace Assignment_3_LinkedLists
                 Node current = Head;
                 if (index < 0 || index > ListSize)
                 {
-                    throw new EmptyListException(index);
+                    throw new ListIndexOutOfRangeException();
                 }
                 else
                 {
@@ -165,7 +169,7 @@ namespace Assignment_3_LinkedLists
                     {
                         AddBeginning(data);
                     }
-                    else if (index == ListSize - 1)
+                    else if ((index == ListSize - 1) && (ListSize != 2))
                     {
                         AddEnd(data);
                     }
@@ -184,7 +188,7 @@ namespace Assignment_3_LinkedLists
                     ListSize++;
                 }
             }
-            catch (EmptyListException ex)
+            catch (ListIndexOutOfRangeException ex)
             {
                 Console.WriteLine(ex.Message);
             }
