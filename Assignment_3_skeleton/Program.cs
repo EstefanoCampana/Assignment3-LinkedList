@@ -10,6 +10,8 @@ namespace Assignment_3_LinkedLists
     internal class Program
     {
         public static SLL list = new SLL();
+        public static SLL list2 = new SLL();
+        public static List<SLL> SLLs = new List<SLL>();
 
         static void Main(string[] args)
         {
@@ -28,27 +30,43 @@ namespace Assignment_3_LinkedLists
             list.Append('c');
             list.PrintData();
 
-            Console.WriteLine("Function [Retrieve] '0' ");
-            Console.WriteLine(list.Retrieve(0));
+            Console.WriteLine("Function [Append] 'a'");
+            list2.Append('a');
+            list2.PrintList();
 
-            Console.WriteLine("Function [Retrieve] '1' ");
-            Console.WriteLine(list.Retrieve(1));
+            Console.WriteLine("Function [Append] 'b'");
+            list2.Append('b');
+            list2.PrintList();
 
-            Console.WriteLine("Function [Retrieve] '2' ");
-            Console.WriteLine(list.Retrieve(2));
-            list.PrintData();
+            Console.WriteLine("Function [Append] 'c'");
+            list2.Append('c');
+            list2.PrintData();
 
-            Console.WriteLine("\n\nFunction [Insert] 'd' at '0'");
-            list.Insert('d', 0);
+            SLLs.Append(list2);
+            list.JoinList(SLLs);
             list.PrintList();
 
-            Console.WriteLine("Function [Insert] '1' at '1'");
-            list.Insert('1', 1);
-            list.PrintList();
+            //Console.WriteLine("Function [Retrieve] '0' ");
+            //Console.WriteLine(list.Retrieve(0));
 
-            Console.WriteLine("Function [Insert] '2' at '2'");
-            list.Insert('2', 2);
-            list.PrintData();
+            //Console.WriteLine("Function [Retrieve] '1' ");
+            //Console.WriteLine(list.Retrieve(1));
+
+            //Console.WriteLine("Function [Retrieve] '2' ");
+            //Console.WriteLine(list.Retrieve(2));
+            //list.PrintData();
+
+            //Console.WriteLine("\n\nFunction [Insert] 'd' at '0'");
+            //list.Insert('d', 0);
+            //list.PrintList();
+
+            //Console.WriteLine("Function [Insert] '1' at '1'");
+            //list.Insert('1', 1);
+            //list.PrintList();
+
+            //Console.WriteLine("Function [Insert] '2' at '2'");
+            //list.Insert('2', 2);
+            //list.PrintData();
 
             //Console.WriteLine("Function [Replace] 'c' with 'e'");
             //list.Replace('e', 2);
@@ -67,13 +85,13 @@ namespace Assignment_3_LinkedLists
             //list.Clear();
             //list.PrintData();
 
-            Console.WriteLine("Function [Size]");
-            list.Size();
-            list.PrintData();
+            //Console.WriteLine("Function [Size]");
+            //list.Size();
+            //list.PrintData();
 
 
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

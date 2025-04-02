@@ -13,7 +13,7 @@ namespace Assignment_3_LinkedLists
 
     public class EmptyListException : Exception
     {
-        public EmptyListException() : base("The list is already empty.") { }
+        public EmptyListException() : base("The list is empty.") { }
         public EmptyListException(int index) : base("The inputted value is out of range for the linked list.") { }
     }
 }
