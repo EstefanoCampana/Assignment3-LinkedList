@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace Test_Assignment_3
 {
@@ -175,7 +176,58 @@ namespace Test_Assignment_3
             Assert.AreEqual("d", this.linkedList.Retrieve(3));
         }
 
-        //Tests deleting node from linked list.
+        // was mising added by sheeba
+        [Test]
+        public void TestRemoveStart()
+        {
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
+            this.linkedList.RemoveStart();
+            /**
+             * Linked list should now be:
+             * 
+             * b -> c -> d
+             */
+            // Test the linked list is not empty.
+            Assert.False(this.linkedList.IsEmpty());
+            // Test the size is 3
+            Assert.AreEqual(3, this.linkedList.Size());
+            // Test the first node value is b
+            Assert.AreEqual("b", this.linkedList.Retrieve(0));
+            // Test the second node value is c
+            Assert.AreEqual("c", this.linkedList.Retrieve(1));
+            // Test the third node value is d
+            Assert.AreEqual("d", this.linkedList.Retrieve(2));
+        }
+        // was missing added by sheeba 
+        [Test]
+        public void TestRemoveEnd()
+        {
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
+            this.linkedList.RemoveEnd();
+            /**
+             * Linked list should now be:
+             * 
+             * a -> b -> c
+             */
+            // Test the linked list is not empty.
+            Assert.False(this.linkedList.IsEmpty());
+            // Test the size is 3
+            Assert.AreEqual(3, this.linkedList.Size());
+            // Test the first node value is a
+            Assert.AreEqual("a", this.linkedList.Retrieve(0));
+            // Test the second node value is b
+            Assert.AreEqual("b", this.linkedList.Retrieve(1));
+            // Test the third node value is c
+            Assert.AreEqual("c", this.linkedList.Retrieve(2));
+        }
+
+        //Tests deleting node from linked list. An item is deleted from middle of list.
         [Test]
         public void TestDeleteNode()
         {
@@ -266,5 +318,44 @@ namespace Test_Assignment_3
 
             Assert.False(!this.linkedList.IsEmpty());
         }
+
+
+        ////sheeba reverse
+        [Test]
+        public void TestReverse()
+        {
+            // Arrange: Create a linked list and add elements
+            this.linkedList.AddEnd("a");
+            this.linkedList.AddEnd("b");
+            this.linkedList.AddEnd("c");
+            this.linkedList.AddEnd("d");
+
+            /**
+             * Initial linked list:
+             * a -> b -> c -> d
+             */
+
+            // Act: Reverse the linked list
+            this.linkedList.Reverse();
+
+            /**
+             * Expected linked list after reversing:
+             * d -> c -> b -> a
+             */
+
+            // Assert: Check if the list is still non-empty
+            Assert.False(this.linkedList.IsEmpty());
+
+            // Assert: Check if the size remains unchanged
+            Assert.AreEqual(4, this.linkedList.Size());
+
+            // Assert: Verify the reversed order
+            Assert.AreEqual("d", this.linkedList.Retrieve(0)); // First node should now be 'd'
+            Assert.AreEqual("c", this.linkedList.Retrieve(1)); // Second node should be 'c'
+            Assert.AreEqual("b", this.linkedList.Retrieve(2)); // Third node should be 'b'
+            Assert.AreEqual("a", this.linkedList.Retrieve(3)); // Fourth node should be 'a'
+        }
+
+        
     }
 }
