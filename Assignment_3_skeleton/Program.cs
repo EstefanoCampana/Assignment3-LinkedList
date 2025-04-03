@@ -132,57 +132,6 @@ namespace Assignment_3_LinkedLists
             users.Clear();
             Console.WriteLine("\nThrow Exceptiion of empty list for GetNameAt method");
             Console.WriteLine(users.GetNameAt(0));
-
-
-
-
-
-            //Console.WriteLine("Function [Retrieve] '0' ");
-            //Console.WriteLine(list.Retrieve(0));
-
-            //Console.WriteLine("Function [Retrieve] '1' ");
-            //Console.WriteLine(list.Retrieve(1));
-
-            //Console.WriteLine("Function [Retrieve] '2' ");
-            //Console.WriteLine(list.Retrieve(2));
-            //list.PrintData();
-
-            //Console.WriteLine("\n\nFunction [Insert] 'd' at '0'");
-            //list.Insert('d', 0);
-            //list.PrintList();
-
-            //Console.WriteLine("Function [Insert] '1' at '1'");
-            //list.Insert('1', 1);
-            //list.PrintList();
-
-            //Console.WriteLine("Function [Insert] '2' at '2'");
-            //list.Insert('2', 2);
-            //list.PrintData();
-
-            //Console.WriteLine("Function [Replace] 'c' with 'e'");
-            //list.Replace('e', 2);
-            //list.PrintData();
-
-            //Console.WriteLine("Function [Delete] at index 2");
-            //list.Delete(2);
-            //list.PrintData();
-
-
-            //Console.WriteLine("Function [FindIndexOf] 'b'");
-            //Console.WriteLine("Index found: " + list.IndexOf('b') + "\n\n");
-
-
-            //Console.WriteLine("Function [Clear]");
-            //list.Clear();
-            //list.PrintData();
-
-            //Console.WriteLine("Function [Size]");
-            //list.Size();
-            //list.PrintData();
-
-
-
-            //Console.ReadKey();
         }
     }
 }
