@@ -145,7 +145,9 @@ namespace Assignment_3_LinkedLists
         /// <exception cref="ListIndexOutOfRangeException">Thrown if index is negative or larger than or equal to size of the list.</exception>
         /// <exception cref="EmptyListException">Thrown if the list size is empty.</exception>
         string GetNameAt(int index);
-        //sheeba added 
+        /// <summary>
+        ///  Reverses the order of the list.
+        /// </summary>
         void Reverse();
 
     }

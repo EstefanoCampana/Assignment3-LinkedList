@@ -300,10 +300,14 @@ namespace Assignment_3_LinkedLists
             try
             {
                 if (Head == null)
+                {
                     throw new EmptyListException();
+                }
 
-                if (targetIndex < 0)
+                if (targetIndex < 0) 
+                {
                     throw new ListIndexOutOfRangeException();
+                }
 
                 int index = 0;
                 Node currentNode = Head;
@@ -337,18 +341,11 @@ namespace Assignment_3_LinkedLists
                     index++;
                 }
             }
-            catch (EmptyListException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (ListIndexOutOfRangeException ex)
+            catch(ListIndexOutOfRangeException ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
-
-
-
         public object Retrieve(int targetIndex)
         {
             try
@@ -497,6 +494,7 @@ namespace Assignment_3_LinkedLists
         /// <param name="index">Index to separate the list in two.</param>
         /// <exception cref="EmptyListException">Thrown if trying split an empty list.</exception>
         /// <exception cref="ListIndexOutOfRangeException">Thrown if the index specified is larger than the list size.</exception>
+        /// <returns>The new list created from dividing another list.</returns>
         public SLL Divide(int index)
         {
             try
@@ -626,15 +624,9 @@ namespace Assignment_3_LinkedLists
                 prev = current;      // Move prev forward
                 current = next;      // Move current forward
             }
-
             Head = prev; // Update Head to the new front
         }
-
-        
-
-
     }
-
 }
 
 
