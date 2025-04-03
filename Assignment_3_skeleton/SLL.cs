@@ -53,13 +53,13 @@ namespace Assignment_3_LinkedLists
             try
             {
                 Node current = Head;
-                if (index < 0 || index > (ListSize - 1))
-                {
-                    throw new ListIndexOutOfRangeException();
-                }
-                else if (ListSize == 0)
+                if (ListSize == 0)
                 {
                     throw new EmptyListException();
+                }
+                else if (index < 0 || index > (ListSize - 1))
+                {
+                    throw new ListIndexOutOfRangeException();
                 }
                 else
                 {
@@ -198,6 +198,7 @@ namespace Assignment_3_LinkedLists
         {
             head = null;
             tail = null;
+            ListSize = 0;
             Console.WriteLine("List cleared");
         }
 
@@ -537,6 +538,72 @@ namespace Assignment_3_LinkedLists
                 return null;
             }
         }
+
+        public void SortByName()
+        {
+            Node current = head;
+
+            // Create a User List for store the object
+            List<User> userList = new List<User>();
+
+            while (current != null)
+            {
+                User currentUser = current.Data as User;
+                if (currentUser != null)
+                {
+                    userList.Add(currentUser);
+                }
+                current = current.Next;
+            }
+
+            // Sort the User List by Name
+            userList = userList.OrderBy(u => u.Name).ToList();
+
+            // Delete the original object and add the sorted object at the end
+            foreach (User user in userList)
+            {
+                RemoveStart();
+                AddEnd(user);
+            }
+        }
+
+
+        public string GetNameAt(int index)
+        {
+            try
+            {
+                Node current = head;
+                User user = null;
+                if (ListSize == 0)
+                {
+                    throw new EmptyListException();
+                }
+                else if (index < 0 || index >= ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                else
+                {
+                    for (int i = 0; i < index; i++)
+                    {
+                        current = current.Next;
+                    }
+                    user = current.Data as User;
+                }
+                return user.getName();
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
 
     }
 }
