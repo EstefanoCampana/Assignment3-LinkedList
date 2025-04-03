@@ -297,45 +297,54 @@ namespace Assignment_3_LinkedLists
         //Sheeba changed 
         public void Replace(object data, int targetIndex)
         {
-            if (Head == null)
-                throw new EmptyListException();
-
-            if (targetIndex < 0)
-                throw new ListIndexOutOfRangeException();
-
-            int index = 0;
-            Node currentNode = Head;
-
-            // Special case: Replacing the head node
-            if (targetIndex == 0)
+            try
             {
-                Head = new Node(data, Head.Next);
-                if (Head.Next == null)
-                    Tail = Head; // If the list had only one element, update Tail
-                return;
-            }
+                if (Head == null)
+                    throw new EmptyListException();
 
-            // Traverse to the target index
-            while (currentNode != null)
-            {
-                if (index == targetIndex - 1)
+                if (targetIndex < 0)
+                    throw new ListIndexOutOfRangeException();
+
+                int index = 0;
+                Node currentNode = Head;
+
+                // Special case: Replacing the head node
+                if (targetIndex == 0)
                 {
-                    if (currentNode.Next == null)
-                        throw new ListIndexOutOfRangeException();
-
-                    currentNode.Next = new Node(data, currentNode.Next.Next);
-
-                    // Update Tail if replacing the last node
-                    if (currentNode.Next.Next == null)
-                        Tail = currentNode.Next;
-
+                    Head = new Node(data, Head.Next);
+                    if (Head.Next == null)
+                        Tail = Head; // If the list had only one element, update Tail
                     return;
                 }
-                currentNode = currentNode.Next;
-                index++;
-            }
 
-            throw new ListIndexOutOfRangeException();
+                // Traverse to the target index
+                while (currentNode != null)
+                {
+                    if (index == targetIndex - 1)
+                    {
+                        if (currentNode.Next == null)
+                            throw new ListIndexOutOfRangeException();
+
+                        currentNode.Next = new Node(data, currentNode.Next.Next);
+
+                        // Update Tail if replacing the last node
+                        if (currentNode.Next.Next == null)
+                            Tail = currentNode.Next;
+
+                        return;
+                    }
+                    currentNode = currentNode.Next;
+                    index++;
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
 
@@ -621,9 +630,9 @@ namespace Assignment_3_LinkedLists
             Head = prev; // Update Head to the new front
         }
 
+        
 
-        
-        
+
     }
 
 }
