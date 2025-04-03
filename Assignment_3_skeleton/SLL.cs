@@ -303,7 +303,7 @@ namespace Assignment_3_LinkedLists
                 {
                     throw new EmptyListException();
                 }
-                if (targetIndex < ListSize)
+                if (targetIndex > ListSize)
                 {
                     throw new ListIndexOutOfRangeException();
                 }
