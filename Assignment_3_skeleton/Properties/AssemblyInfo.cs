@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Assignment_3_skeleton")]
+[assembly: AssemblyTitle("Assignment3 LinkedLists")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SAIT")]
-[assembly: AssemblyProduct("Assignment_3_skeleton")]
+[assembly: AssemblyProduct("Assignment3 LinkedLists")]
 [assembly: AssemblyCopyright("Copyright © SAIT 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
