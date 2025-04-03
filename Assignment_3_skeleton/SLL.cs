@@ -294,54 +294,51 @@ namespace Assignment_3_LinkedLists
             return false;
         }
 
-
+        //Sheeba changed 
         public void Replace(object data, int targetIndex)
         {
-            try
-            {
-                int index = 0;
-                if (CheckListNull() is true)
-                {
-                    throw new EmptyListException();
-                }
-                if (targetIndex < ListSize)
-                {
-                    throw new ListIndexOutOfRangeException();
-                }
-                for (Node tempNode = Head; tempNode != null; tempNode = tempNode.Next)
-                {
-                    if (targetIndex == 0)
-                    {
-                        Head = new Node(data, Head.Next);
-                        return;
-                    }
+            if (Head == null)
+                throw new EmptyListException();
 
-                    if (index + 1 == targetIndex)
-                    {
-                        if (tempNode == tail)
-                        {
-                            Tail = new Node(data);
-                            return;
-                        }
-                        else
-                        {
-                            tempNode.Next = new Node(data, tempNode.Next.Next);
-                            //tail = tempNode.Next;
-                            return;
-                        }
-                    }
-                    index++;
+            if (targetIndex < 0)
+                throw new ListIndexOutOfRangeException();
+
+            int index = 0;
+            Node currentNode = Head;
+
+            // Special case: Replacing the head node
+            if (targetIndex == 0)
+            {
+                Head = new Node(data, Head.Next);
+                if (Head.Next == null)
+                    Tail = Head; // If the list had only one element, update Tail
+                return;
+            }
+
+            // Traverse to the target index
+            while (currentNode != null)
+            {
+                if (index == targetIndex - 1)
+                {
+                    if (currentNode.Next == null)
+                        throw new ListIndexOutOfRangeException();
+
+                    currentNode.Next = new Node(data, currentNode.Next.Next);
+
+                    // Update Tail if replacing the last node
+                    if (currentNode.Next.Next == null)
+                        Tail = currentNode.Next;
+
+                    return;
                 }
+                currentNode = currentNode.Next;
+                index++;
             }
-            catch (ListIndexOutOfRangeException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (EmptyListException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+
+            throw new ListIndexOutOfRangeException();
         }
+
+
 
         public object Retrieve(int targetIndex)
         {
@@ -604,6 +601,31 @@ namespace Assignment_3_LinkedLists
             }
         }
 
+        // sheeba add
+        public void Reverse()
+        {
+            Node prev = null;
+            Node current = Head;
+            Node next = null;
 
+            Tail = Head; // Update Tail to the old Head
+
+            while (current != null)
+            {
+                next = current.Next; // Store next node
+                current.Next = prev; // Reverse the pointer
+                prev = current;      // Move prev forward
+                current = next;      // Move current forward
+            }
+
+            Head = prev; // Update Head to the new front
+        }
+
+
+        
+        
     }
+
 }
+
+
