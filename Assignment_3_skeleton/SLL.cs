@@ -194,17 +194,6 @@ namespace Assignment_3_LinkedLists
             }
         }
 
-        public void Append(object data)
-        {
-            listSize++;
-            if (FixListNull(data) == true)
-            {
-                return;
-            }
-            tail.Next = new Node(data);
-            tail = tail.Next;
-        }
-
         public void Clear()
         {
             head = null;
@@ -294,58 +283,6 @@ namespace Assignment_3_LinkedLists
             return -1;
         }
 
-        public void Insert(object data, int targetIndex)
-        {
-            try
-            {
-                listSize++;
-                if (CheckListNull() is true && targetIndex > 0)
-                {
-                    throw new ListIndexOutOfRangeException();
-                }
-                if (targetIndex > ListSize)
-                {
-                    throw new ListIndexOutOfRangeException();
-                }
-                if (targetIndex == 0)
-                {
-                    if (CheckListNull() is true)
-                    {
-                        head = tail = new Node(data);
-                    }
-                    else
-                    { // no work
-                        Node temp = head;
-                        head = new Node(data, temp);
-                    }
-                }
-                int index = 0;
-                for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
-                {
-                    if (index + 1 == targetIndex)
-                    {
-                        if (tempNode.Next == tail)
-                        {
-                            Console.WriteLine("Here");
-                            Append(tail.Data);
-                            tempNode.Next = new Node(data, tail);
-                        }
-                        else
-                        { // in between
-                            Console.WriteLine("IN ELSE");
-                            Node temp = tempNode.Next;
-                            tempNode.Next = new Node(data, temp);
-                        }
-                    }
-                    index++;
-                }
-            }
-            catch (ListIndexOutOfRangeException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
         public bool IsEmpty()
         {
             if (head is null && tail is null)
@@ -356,17 +293,6 @@ namespace Assignment_3_LinkedLists
             return false;
         }
 
-        public void Prepend(object data)
-        {
-            listSize++;
-            if (FixListNull(data) == true)
-            {
-                return;
-            }
-            Node new_node = new Node(data);
-            new_node.Next = head;
-            head = new_node;
-        }
 
         public void Replace(object data, int targetIndex)
         {
@@ -381,11 +307,11 @@ namespace Assignment_3_LinkedLists
                 {
                     throw new ListIndexOutOfRangeException();
                 }
-                for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
+                for (Node tempNode = Head; tempNode != null; tempNode = tempNode.Next)
                 {
                     if (targetIndex == 0)
                     {
-                        head = new Node(data, head.Next);
+                        Head = new Node(data, Head.Next);
                         return;
                     }
 
@@ -393,7 +319,7 @@ namespace Assignment_3_LinkedLists
                     {
                         if (tempNode == tail)
                         {
-                            tail = new Node(data);
+                            Tail = new Node(data);
                             return;
                         }
                         else
@@ -426,20 +352,20 @@ namespace Assignment_3_LinkedLists
                 }
                 if (targetIndex == 0)
                 {
-                    return head.Data;
+                    return Head.Data;
                 }
                 if (targetIndex < 0 || targetIndex > ListSize)
                 {
                     throw new ListIndexOutOfRangeException();
                 }
                 int index = 0;
-                for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
+                for (Node tempNode = Head; tempNode != null; tempNode = tempNode.Next)
                 {
                     if (index + 1 == targetIndex)
                     {
-                        if (tempNode.Next == tail)
+                        if (tempNode.Next == Tail)
                         {
-                            return tail.Data;
+                            return Tail.Data;
                         }
                         else
                         {
@@ -464,12 +390,12 @@ namespace Assignment_3_LinkedLists
 
         public int Size()
         {
-            if (head is null)
+            if (Head is null)
             {
                 return 0;
             }
-            Console.Write(listSize);
-            return listSize;
+            Console.Write(ListSize);
+            return ListSize;
         }
 
         // EXTRA METHODS
@@ -479,7 +405,7 @@ namespace Assignment_3_LinkedLists
             {
                 return;
             }
-            for (Node tempNode = head; tempNode != null; tempNode = tempNode.Next)
+            for (Node tempNode = Head; tempNode != null; tempNode = tempNode.Next)
             {
                 Console.Write(tempNode.Data.ToString() + "  ");
             }
@@ -492,7 +418,7 @@ namespace Assignment_3_LinkedLists
             {
                 return null;
             }
-            return head;
+            return Head;
         }
 
         public Node GetTail()
@@ -501,7 +427,7 @@ namespace Assignment_3_LinkedLists
             {
                 return null;
             }
-            return tail;
+            return Tail;
         }
 
         public void PrintData()
@@ -517,7 +443,7 @@ namespace Assignment_3_LinkedLists
 
         public bool CheckListNull()
         {
-            if (head is null && tail is null)
+            if (Head is null && Tail is null)
             {
                 Console.WriteLine("List was NULL\n\n");
                 return true;
@@ -548,7 +474,7 @@ namespace Assignment_3_LinkedLists
                     Node current = appendList.Head;
                     while(current != null)
                     {
-                        this.Append(current.Data);
+                        this.AddEnd(current.Data);
                         current = current.Next;
                     }
                 }
@@ -556,6 +482,59 @@ namespace Assignment_3_LinkedLists
             catch (EmptyListException ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        /// <summary>
+        /// Used to divide a list in two at a specified index.
+        /// </summary>
+        /// <param name="index">Index to separate the list in two.</param>
+        /// <exception cref="EmptyListException">Thrown if trying split an empty list.</exception>
+        /// <exception cref="ListIndexOutOfRangeException">Thrown if the index specified is larger than the list size.</exception>
+        public SLL Divide(int index)
+        {
+            try
+            {
+                if (index > ListSize)
+                {
+                    throw new ListIndexOutOfRangeException();
+                }
+                if (Head == null && Tail == null)
+                {
+                    throw new EmptyListException();
+                }
+                else
+                {
+                    Node current = Head;
+                    int count = 0;
+                    SLL newList = new SLL();
+                    while (current != null)
+                    {
+                        if (count == index)
+                        {
+                            //newList.Append(current.Data);
+                            while (current != null)
+                            {
+                                this.RemoveAt(count);
+                                newList.AddEnd(current.Data);
+                                current = current.Next;
+                            }
+                            break;
+                        }
+                        count++;
+                        current = current.Next;
+                    }
+                    return newList;
+                }
+            }
+            catch (EmptyListException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            catch (ListIndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
             }
         }
 

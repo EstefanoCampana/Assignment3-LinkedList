@@ -9,13 +9,15 @@ namespace Assignment_3_LinkedLists
     public interface LinkedListADT
     {
         /// <summary>
-        /// Prepend an item to the beginning of the linked list.
+        /// Prepends (adds to beginning) data to the list.
         /// </summary>
+        /// <param name="data">Data to store inside element.</param>
         void AddBeginning(Object data);
 
         /// <summary>
-        /// Append an item to the end of the linked list.
+        /// Adds to the end of the list.
         /// </summary>
+        /// <param name="data">Data to append.</param>
         void AddEnd(Object data);
 
         /// <summary>
@@ -34,8 +36,11 @@ namespace Assignment_3_LinkedLists
         void RemoveEnd();
 
         /// <summary>
-        /// Insert an item at a specific index in the linked list.
+        /// Adds a new element at a specific position.
         /// </summary>
+        /// <param name="data">Data that element is to contain.</param>
+        /// <param name="index">Index to add new element at.</param>
+        /// <exception cref="ListIndexOutOfRangeException">Thrown if index is negative or past the size of the list.</exception>
         void InsertAt(int index, Object data);
 
 
@@ -47,26 +52,6 @@ namespace Assignment_3_LinkedLists
 
         ///<summary>Clears the list.</summary>
         void Clear();
-
-        /// <summary>
-        /// Adds to the end of the list.
-        /// </summary>
-        /// <param name="data">Data to append.</param>
-        void Append(Object data);
-
-        /// <summary>
-        /// Prepends (adds to beginning) data to the list.
-        /// </summary>
-        /// <param name="data">Data to store inside element.</param>
-        void Prepend(Object data);
-
-        /// <summary>
-        /// Adds a new element at a specific position.
-        /// </summary>
-        /// <param name="data">Data that element is to contain.</param>
-        /// <param name="index">Index to add new element at.</param>
-        /// <exception cref="ListIndexOutOfRangeException">Thrown if index is negative or past the size of the list.</exception>
-        void Insert(Object data, int index);
 
         /// <summary>
         /// Replaces the data at index.
@@ -143,7 +128,7 @@ namespace Assignment_3_LinkedLists
         /// <summary>
         /// Used to join two or more lists.
         /// </summary>
-        /// <param name="appendList">The list to append </param>
+        /// <param name="appendList">The list to append.</param>
         /// <exception cref="EmptyListException">Thrown if trying to append to an empty/non-existent list.</exception>
         void JoinList(SLL appendList);
 
