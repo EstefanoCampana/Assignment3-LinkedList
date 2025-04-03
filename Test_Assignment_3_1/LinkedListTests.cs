@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using static NUnit.Framework.Constraints.Tolerance;
+using System.Xml.Linq;
 
 namespace Test_Assignment_3
 {
@@ -356,6 +358,74 @@ namespace Test_Assignment_3
             Assert.AreEqual("a", this.linkedList.Retrieve(3)); // Fourth node should be 'a'
         }
 
-        
+        [Test]
+        public void TestSortByName()
+        {
+            // Arrange: Create a linked list and add elements
+            User user1 = new User(1, "Peter", "peter@gmail.com", "password");
+            this.linkedList.AddEnd(user1);
+            User user2 = new User(2, "Mary", "mary@gmail.com", "password");
+            this.linkedList.AddEnd(user2);
+            User user3 = new User(3, "Abby", "abby@gmail.com", "password");
+            this.linkedList.AddEnd(user3);
+
+            /**
+             * Initial linked list:
+             * Perter -> Mary -> Abby
+             */
+
+            // Act: Sort the linked list by Name
+            this.linkedList.SortByName();
+
+            /**
+             * Expected linked list after sorting:
+             * Abby -> Mary -> Peter
+             */
+
+            // Assert: Check if the list is still non - empty
+            Assert.False(this.linkedList.IsEmpty());
+
+            // Assert: Check if the size remains unchanged
+            Assert.AreEqual(3, this.linkedList.Size());
+
+            // Assert: Verify the reversed order
+            Assert.AreEqual("Abby", this.linkedList.GetNameAt(0)); // First node should now be 'Abby'
+            Assert.AreEqual("Mary", this.linkedList.GetNameAt(1)); // Second node should be 'Mary'
+            Assert.AreEqual("Peter", this.linkedList.GetNameAt(2)); // Third node should be 'Peter'
+        }
+
+
+        [Test]
+        public void TestGetNameAt()
+        {
+            // Arrange: Create a linked list and add elements
+            User user1 = new User(1, "Peter", "peter@gmail.com", "password");
+            this.linkedList.AddEnd(user1);
+            User user2 = new User(2, "Mary", "mary@gmail.com", "password");
+            this.linkedList.AddEnd(user2);
+            User user3 = new User(3, "Abby", "abby@gmail.com", "password");
+            this.linkedList.AddEnd(user3);
+
+            /**
+             * Initial linked list:
+             * Perter -> Mary -> Abby
+             */
+
+            // Assert: Test if GetNameAt Works
+            this.linkedList.GetNameAt(0);
+            this.linkedList.GetNameAt(1);
+            this.linkedList.GetNameAt(2);
+
+            // Assert: Check to see if list is empty
+            Assert.False(this.linkedList.IsEmpty());
+
+            // Assert: Check if the size remains unchanged
+            Assert.AreEqual(3, this.linkedList.Size());
+
+            // Assert: Verify the GetNameAt method
+            Assert.AreEqual("Peter", this.linkedList.GetNameAt(0)); // First node should now be 'Peter'
+            Assert.AreEqual("Mary", this.linkedList.GetNameAt(1)); // Second node should be 'Mary'
+            Assert.AreEqual("Abby", this.linkedList.GetNameAt(2)); // Third node should be 'Abby'
+        }
     }
 }
