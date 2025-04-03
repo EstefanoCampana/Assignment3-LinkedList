@@ -23,6 +23,9 @@ namespace Assignment_3_LinkedLists
         /// <summary>
         /// Remove an item at an index in the linked list.
         /// </summary>
+        /// <param name="index">Position of the removed item</param>
+        /// <exception cref="ListIndexOutOfRangeException">Thrown if index is negative or larger than size - 1 of list.</exception>
+        /// <exception cref="EmptyListException">Thrown if trying to remove a value in an empty list.</exception>
         void RemoveAt(int index);
 
         /// <summary>
@@ -131,6 +134,17 @@ namespace Assignment_3_LinkedLists
         /// <param name="appendList">The list to append.</param>
         /// <exception cref="EmptyListException">Thrown if trying to append to an empty/non-existent list.</exception>
         void JoinList(SLL appendList);
+        /// <summary>
+        /// Sort the nodes in the linked list into ascending order based on the names of the users.
+        /// </summary>
+        void SortByName();
+        /// <summary>
+        /// Get the name of the specify users in the linked list by getting the position of users. 
+        /// </summary>
+        /// <param name="index">The position of users in the linked list</param>
+        /// <exception cref="ListIndexOutOfRangeException">Thrown if index is negative or larger than or equal to size of the list.</exception>
+        /// <exception cref="EmptyListException">Thrown if the list size is empty.</exception>
+        string GetNameAt(int index);
 
     }
 }
