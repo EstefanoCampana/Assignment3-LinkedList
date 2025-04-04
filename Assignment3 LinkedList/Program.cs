@@ -130,6 +130,8 @@ namespace Assignment3_LinkedList
             users.Clear();
             Console.WriteLine("\nThrow Exceptiion of empty list for GetNameAt method");
             Console.WriteLine(users.GetNameAt(0));
+            Console.WriteLine("\nMove list contents to Array");
+            users.ToArray();
         }
     }
 }

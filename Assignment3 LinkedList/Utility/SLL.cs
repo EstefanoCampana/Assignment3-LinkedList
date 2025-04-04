@@ -625,5 +625,22 @@ namespace Assignment3_LinkedList
             }
             Head = prev; // Update Head to the new front
         }
+
+        // linkedlist to array
+        public object[] ToArray()
+        {
+            object[] array = new object[ListSize];
+            Node current = Head;
+            int index = 0;
+
+            while (current != null)
+            {
+                array[index++] = current.Data;
+                current = current.Next;
+            }
+
+            return array;
+        }
+
     }
 }
