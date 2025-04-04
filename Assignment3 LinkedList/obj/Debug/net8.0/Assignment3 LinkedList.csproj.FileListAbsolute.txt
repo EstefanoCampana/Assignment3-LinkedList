@@ -1,0 +1,14 @@
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\bin\Debug\net8.0\Assignment3 LinkedList.exe
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\bin\Debug\net8.0\Assignment3 LinkedList.deps.json
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\bin\Debug\net8.0\Assignment3 LinkedList.runtimeconfig.json
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\bin\Debug\net8.0\Assignment3 LinkedList.dll
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\bin\Debug\net8.0\Assignment3 LinkedList.pdb
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\Assignment3 LinkedList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\Assignment3 LinkedList.AssemblyInfoInputs.cache
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\Assignment3 LinkedList.AssemblyInfo.cs
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\Assignment3 LinkedList.csproj.CoreCompileInputs.cache
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\Assignment3 LinkedList.dll
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\refint\Assignment3 LinkedList.dll
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\Assignment3 LinkedList.pdb
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\Assignment3 LinkedList.genruntimeconfig.cache
+C:\Users\smowi\source\repos\Assignment3\Assignment3 LinkedList\obj\Debug\net8.0\ref\Assignment3 LinkedList.dll
